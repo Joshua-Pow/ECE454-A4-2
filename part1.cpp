@@ -37,6 +37,13 @@ int main() {
     timingsGlobal.push_back(
         std::chrono::duration_cast<std::chrono::microseconds>(end - start)
             .count());
+
+    myList.printList();
+    // Clear the list and insert initial values again
+    myList.clear();
+    for (int val : initial_values) {
+      myList.insert(val);
+    }
   }
 
   // Insert values with fine-grained lock and measure time
@@ -55,6 +62,13 @@ int main() {
     timingsFineGrained.push_back(
         std::chrono::duration_cast<std::chrono::microseconds>(end - start)
             .count());
+
+    myList.printList();
+    // Clear the list and insert initial values again
+    myList.clear();
+    for (int val : initial_values) {
+      myList.insert(val);
+    }
   }
 
   // Calculate and print average timings
@@ -72,9 +86,6 @@ int main() {
   // This would be a discussion rather than code.
   // Discuss the benefits of global vs fine-grained locking in terms of
   // simplicity, overhead, contention, etc.
-
-  // Print the list
-  myList.printList();
 
   return 0;
 }

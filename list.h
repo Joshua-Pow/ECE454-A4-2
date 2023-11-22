@@ -26,6 +26,7 @@ class List {
 
   // Utility methods
   void printList();  // Print the contents of the list
+  void clear();      // Clear the list
 };
 
 #endif

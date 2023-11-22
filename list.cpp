@@ -2,7 +2,6 @@
 
 #include <chrono>
 #include <iostream>
-#include <mutex>
 #include <thread>
 
 // Node constructor
@@ -84,4 +83,16 @@ void List::printList() {
     temp = temp->next;
   }
   std::cout << std::endl;
+}
+
+void List::clear() {
+  std::lock_guard<std::mutex> guard(
+      listLock);  // Lock the list for thread safety
+  Node* current = head;
+  while (current != nullptr) {
+    Node* next = current->next;
+    delete current;
+    current = next;
+  }
+  head = nullptr;
 }
